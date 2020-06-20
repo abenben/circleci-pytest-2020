@@ -45,7 +45,7 @@ jobs:
     steps:
       - setup_lib
       - run:
-          name: run test-cov
+          name: run test-cov --cov-report=html
           command: |
             pytest --cov=src
       - store_test_results:
