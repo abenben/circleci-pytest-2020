@@ -30,7 +30,7 @@ def test_addition_normal(addition_task):
 subtraction_lists = (
     [0, 0, 0],
     [1, 1, 0],
-    [10, 5, 5])
+    [10, 5, 15])
 
 
 @pytest.fixture(params=subtraction_lists, ids=func_ids)
