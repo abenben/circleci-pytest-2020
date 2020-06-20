@@ -54,8 +54,8 @@ jobs:
           command: |
             . venv/bin/activate
             pytest --cov=srcworkflows:
-  Welcome:
-    jobs:
-      - build1
-      - build2
+Welcome:
+  jobs:
+    - build1
+    - build2
   version: 2
