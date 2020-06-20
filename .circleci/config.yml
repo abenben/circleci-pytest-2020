@@ -65,6 +65,12 @@ jobs:
       - python/load-cache
       - python/install-deps
       - python/save-cache
+      - store-test-results:
+          path: test-reports
+      - run:
+          name: run test-cov
+          command: |
+            pytest --cov=src
 orbs:
   python: circleci/python@0.3.0
 version: 2.1
