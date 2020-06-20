@@ -30,7 +30,7 @@ jobs:
             pytest tests/test_calculator.py --junitxml=test-reports/junit.xml
       - store_test_results:
           path: test-reports
-  test_1:
+  test_2:
     executor: python/default
     steps:
       - setup_lib
