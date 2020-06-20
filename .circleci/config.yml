@@ -48,13 +48,13 @@ workflows:
     jobs:
       - build
       - test1
-        requires:
-          - build
+          requires:
+            - build
       - test2
-        requires:
-          - build
+          requires:
+            - build
       - cov
-        requires:
-          - test1
-          - test2
+          requires:
+            - test1
+            - test2
   version: 2
