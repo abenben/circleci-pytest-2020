@@ -1,10 +1,11 @@
-version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/python:3.8.2
+    executor: python/default
     steps:
       - checkout
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
       - run:
           name: install dependencies
           command: |
@@ -15,10 +16,12 @@ jobs:
             pip install pytest-cov
             pip install -e ./.
   test1:
-    docker:
-      - image: circleci/python:3.8.2
+    executor: python/default
     steps:
       - checkout
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
       - run:
           name: install dependencies
           command: |
@@ -38,10 +41,12 @@ jobs:
             . venv/bin/activate
             pytest tests/test_calculator.py --junitxml=test-reports/junit.xml
   test2:
-    docker:
-      - image: circleci/python:3.8.2
+    executor: python/default
     steps:
       - checkout
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
       - run:
           name: install dependencies
           command: |
@@ -57,10 +62,12 @@ jobs:
             . venv/bin/activate
             pytest tests/test_calculator2.py --junitxml=test-reports/junit.xml
   cov:
-    docker:
-      - image: circleci/python:3.8.2
+    executor: python/default
     steps:
       - checkout
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
       - run:
           name: install dependencies
           command: |
@@ -70,13 +77,9 @@ jobs:
             pip install pytest
             pip install pytest-cov
             pip install -e ./.
-      - store-test-results:
-            path: test-reports
-      - run:
-          name: run test-cov
-          command: |
-            . venv/bin/activate
-            pytest --cov=src
+orbs:
+  python: circleci/python@0.3.0
+version: 2.1
 workflows:
   Welcome:
     jobs:
@@ -91,4 +94,3 @@ workflows:
           requires:
             - test1
             - test2
-  version: 2
