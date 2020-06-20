@@ -1,14 +1,10 @@
-jobs:
-  build:
-    executor: python/default
-    steps:
-      - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
-  test1:
-    executor: python/default
-    steps:
+version: 2.1
+orbs:
+  python: circleci/python@0.3.0
+commands:
+  # ここにコマンドを定義する
+  setup_lib: # コマンド の名前（任意）
+    steps: # 再利用したステップをここに記載
       - checkout
       - python/load-cache
       - python/install-deps
@@ -17,56 +13,54 @@ jobs:
           name: install dependencies
           command: |
             pip install -e ./.
+jobs:
+  lint:
+    executor: python/default
+    steps:
+      - setup_lib
+      - store_test_results:
+          path: test-reports
+  test1:
+    executor: python/default
+    steps:
+      - setup_lib
       - run:
           name: run test
           command: |
             #. venv/bin/activate
             pytest tests/test_calculator.py --junitxml=test-reports/junit.xml
+      - store_test_results:
+          path: test-reports
   test2:
     executor: python/default
     steps:
-      - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
-      - run:
-          name: install dependencies
-          command: |
-            pip install -e ./.
+      - setup_lib
       - run:
           name: run test
           command: |
             pytest tests/test_calculator2.py --junitxml=test-reports/junit.xml
+      - store_test_results:
+          path: test-reports
   test_coverage:
     executor: python/default
     steps:
-      - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
-      - run:
-          name: install dependencies
-          command: |
-            pip install -e ./.
+      - setup_lib
       - store_test_results:
           path: test-reports
       - run:
           name: run test-cov
           command: |
             pytest --cov=src
-orbs:
-  python: circleci/python@0.3.0
-version: 2.1
 workflows:
   Welcome:
     jobs:
-      - build
+      - lint
       - test1:
           requires:
-            - build
+            - lint
       - test2:
           requires:
-            - build
+            - lint
       - test_coverage:
           requires:
             - test1
