@@ -6,15 +6,15 @@ jobs:
       - python/load-cache
       - python/install-deps
       - python/save-cache
-      - run:
-          name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install --upgrade pip
-            pip install pytest
-            pip install pytest-cov
-            pip install -e ./.
+      #- run:
+      #    name: install dependencies
+      #    command: |
+      #      python3 -m venv venv
+      #      . venv/bin/activate
+      #      pip install --upgrade pip
+      #      pip install pytest
+      #      pip install pytest-cov
+      #      pip install -e ./.
   test1:
     executor: python/default
     steps:
@@ -22,23 +22,23 @@ jobs:
       - python/load-cache
       - python/install-deps
       - python/save-cache
-      - run:
-          name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install --upgrade pip
-            pip install pytest
-            pip install pytest-cov
-            pip install -e ./.
+      #- run:
+      #    name: install dependencies
+      #    command: |
+      #      python3 -m venv venv
+      #      . venv/bin/activate
+      #      pip install --upgrade pip
+      #      pip install pytest
+      #      pip install pytest-cov
+      #      pip install -e ./.
+      #- run:
+      #    name: run test
+      #    command: |
+      #      . venv/bin/activate
       - run:
           name: run test
           command: |
-            . venv/bin/activate
-      - run:
-          name: run test
-          command: |
-            . venv/bin/activate
+            #. venv/bin/activate
             pytest tests/test_calculator.py --junitxml=test-reports/junit.xml
   test2:
     executor: python/default
@@ -48,18 +48,8 @@ jobs:
       - python/install-deps
       - python/save-cache
       - run:
-          name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install --upgrade pip
-            pip install pytest
-            pip install pytest-cov
-            pip install -e ./.
-      - run:
           name: run test
           command: |
-            . venv/bin/activate
             pytest tests/test_calculator2.py --junitxml=test-reports/junit.xml
   cov:
     executor: python/default
@@ -68,15 +58,6 @@ jobs:
       - python/load-cache
       - python/install-deps
       - python/save-cache
-      - run:
-          name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install --upgrade pip
-            pip install pytest
-            pip install pytest-cov
-            pip install -e ./.
 orbs:
   python: circleci/python@0.3.0
 version: 2.1
