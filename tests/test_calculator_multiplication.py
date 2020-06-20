@@ -25,20 +25,3 @@ def test_multiplication_normal(multiplication_task):
     cal = calculator.Calculator()
     result = cal.multiplication(multiplication_task[0], multiplication_task[1])
     assert result == multiplication_task[2]
-
-
-division_lists = (
-    [0, 1, 0],
-    [1, 1, 1],
-    [10, 5, 2])
-
-
-@pytest.fixture(params=division_lists, ids=func_ids)
-def division_task(request):
-    return request.param
-
-
-def test_division_normal(division_task):
-    cal = calculator.Calculator()
-    result = cal.division(division_task[0], division_task[1])
-    assert result == division_task[2]
