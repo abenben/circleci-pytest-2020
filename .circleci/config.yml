@@ -47,7 +47,7 @@ jobs:
       - run:
           name: run test covarege
           command: |
-            pytest --cov=src --cov-report=html
+            pytest --cov=src --cov-report=html --cov-fail-under=100
       - store_test_results:
           path: test-reports
 workflows:
