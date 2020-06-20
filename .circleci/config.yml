@@ -36,7 +36,7 @@ jobs:
           name: run test
           command: |
             . venv/bin/activate
-            pytest --junitxml=test-reports/junit.xml
+            pytest tests/test_calculator.py --junitxml=test-reports/junit.xml
   test2:
     docker:
       - image: circleci/python:3.8.2
@@ -55,7 +55,7 @@ jobs:
           name: run test
           command: |
             . venv/bin/activate
-            pytest --junitxml=test-reports/junit.xml
+            pytest tests/test_calculator2.py --junitxml=test-reports/junit.xml
   cov:
     docker:
       - image: circleci/python:3.8.2
