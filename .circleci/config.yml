@@ -68,7 +68,7 @@ jobs:
             pip install -e ./.
      - store-test-results:
           path: test-reports
-      - run:
+     - run:
           name: run test-cov
           command: |
             . venv/bin/activate
