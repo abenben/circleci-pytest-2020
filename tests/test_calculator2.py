@@ -30,7 +30,7 @@ def test_multiplication_normal(multiplication_task):
 division_lists = (
     [0, 1, 0],
     [1, 1, 1],
-    [10, 5, 3])
+    [10, 5, 2])
 
 
 @pytest.fixture(params=division_lists, ids=func_ids)
