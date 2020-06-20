@@ -27,7 +27,6 @@ jobs:
       - run:
           name: run test
           command: |
-            #. venv/bin/activate
             pytest tests/test_calculator.py --junitxml=test-reports/junit.xml
       - store_test_results:
           path: test-reports
@@ -45,12 +44,12 @@ jobs:
     executor: python/default
     steps:
       - setup_lib
-      - store_test_results:
-          path: test-reports
       - run:
           name: run test-cov
           command: |
             pytest --cov=src
+      - store_test_results:
+          path: test-reports
 workflows:
   Welcome:
     jobs:
