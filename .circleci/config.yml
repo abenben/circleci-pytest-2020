@@ -53,9 +53,10 @@ jobs:
           name: run test-cov
           command: |
             . venv/bin/activate
-            pytest --cov=srcworkflows:
-Welcome:
-  jobs:
-    - build1
-    - build2
+            pytest --cov=src
+workflows:
+  Welcome:
+    jobs:
+      - build1
+      - build2
   version: 2
