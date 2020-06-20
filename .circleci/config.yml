@@ -3,16 +3,16 @@ orbs:
   python: circleci/python@0.3.0
 commands:
   # ここにコマンドを定義する
-  setup_lib: # コマンド の名前（任意）
-    steps: # 再利用したステップをここに記載
+  setup_lib: # 基本ライブラリのセットアップ
+    steps:
       - checkout
       - python/load-cache
       - python/install-deps
-      - python/save-cache
       - run:
-          name: install dependencies
+          name: install my libraly
           command: |
             pip install -e ./.
+      - python/save-cache
 jobs:
   lint:
     executor: python/default
@@ -45,13 +45,13 @@ jobs:
     steps:
       - setup_lib
       - run:
-          name: run test-cov --cov-report=html
+          name: run test covarege
           command: |
-            pytest --cov=src
+            pytest --cov=src --cov-report=html
       - store_test_results:
           path: test-reports
 workflows:
-  test_calculator:
+  test_calculator1:
     jobs:
       - lint
       - test_1:
@@ -64,3 +64,12 @@ workflows:
           requires:
             - test_1
             - test_2
+  test_calculator2:
+    jobs:
+      - lint
+      - test_1:
+          requires:
+            - lint
+      - test_covarege:
+          requires:
+            - test_1
