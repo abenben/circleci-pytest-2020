@@ -6,7 +6,6 @@ jobs:
       - python/load-cache
       - python/install-deps
       - python/save-cache
-      #- run:
       #    name: install dependencies
       #    command: |
       #      python3 -m venv venv
@@ -36,6 +35,10 @@ jobs:
       #    command: |
       #      . venv/bin/activate
       - run:
+          name: install dependencies
+          command: |
+            pip install -e ./.
+      - run:
           name: run test
           command: |
             #. venv/bin/activate
@@ -47,6 +50,10 @@ jobs:
       - python/load-cache
       - python/install-deps
       - python/save-cache
+      - run:
+          name: install dependencies
+          command: |
+            pip install -e ./.
       - run:
           name: run test
           command: |
