@@ -65,7 +65,7 @@ jobs:
       - python/load-cache
       - python/install-deps
       - python/save-cache
-      - store-test-results:
+      - store_test_results:
           path: test-reports
       - run:
           name: run test-cov
