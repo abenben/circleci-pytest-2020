@@ -14,13 +14,13 @@ commands:
           command: |
             pip install -e ./.
 jobs:
-  構文チェック:
+  u"構文チェック":
     executor: python/default
     steps:
       - setup_lib
       - store_test_results:
           path: test-reports
-  テスト（加算・減算）:
+  u"テスト（加算・減算）":
     executor: python/default
     steps:
       - setup_lib
@@ -30,7 +30,7 @@ jobs:
             pytest tests/test_calculator.py --junitxml=test-reports/junit.xml
       - store_test_results:
           path: test-reports
-  テスト（乗算・除算）:
+  u"テスト（乗算・除算）":
     executor: python/default
     steps:
       - setup_lib
@@ -40,7 +40,7 @@ jobs:
             pytest tests/test_calculator2.py --junitxml=test-reports/junit.xml
       - store_test_results:
           path: test-reports
-  テストカバレッジ:
+  u"テストカバレッジ":
     executor: python/default
     steps:
       - setup_lib
@@ -51,16 +51,16 @@ jobs:
       - store_test_results:
           path: test-reports
 workflows:
-  計算機のテスト:
+  u"計算機のテスト":
     jobs:
-      - 構文チェック
-      - テスト（加算・減算）:
+      - u"構文チェック"
+      - u"テスト（加算・減算）":
           requires:
-            - 構文チェック
-      - テスト（乗算・除算）:
+            - u"構文チェック"
+      - u"テスト（乗算・除算）":
           requires:
-            - 構文チェック
-      - テストカバレッジ:
+            - u"構文チェック"
+      - u"テストカバレッジ":
           requires:
-            - テスト（加算・減算）
-            - テスト（乗算・除算）
+            - u"テスト（加算・減算）"
+            - u"テスト（乗算・除算）"
