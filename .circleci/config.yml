@@ -27,8 +27,7 @@ jobs:
       - run:
           name: run test
           command: |
-            pytest tests/test_calculator_addition.py --junitxml=test-reports/junit.xml
-            pytest tests/test_calculator_subtraction.py	--junitxml=test-reports/junit.xml
+            pytest tests/test_calculator_addition.py tests/test_calculator_subtraction.py --junitxml=test-reports/junit.xml
       - store_test_results:
           path: test-reports/junit.xml
   test_2:
@@ -38,8 +37,7 @@ jobs:
       - run:
           name: run test
           command: |
-            pytest tests/test_calculator_multiplication.py --junitxml=test-reports/junit.xml
-            pytest tests/test_calculator_division.py --junitxml=test-reports/junit.xml
+            pytest tests/test_calculator_multiplication.py tests/test_calculator_division.py --junitxml=test-reports/junit.xml
       - store_test_results:
           path: test-reports/junit.xml
   test_covarege:

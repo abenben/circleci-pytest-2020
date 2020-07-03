@@ -49,14 +49,3 @@ class Calculator(object):
         """
         result = x / y
         return result
-
-    @staticmethod
-    def power(x, y):
-        """
-        累乗する。
-        :param x: 左辺
-        :param y: 右辺
-        :return: 計算結果
-        """
-        result = x / y
-        return result
