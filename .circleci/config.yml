@@ -17,7 +17,7 @@ jobs:
   lint:
     executor: 
       name : python/default
-      tag : "3.6.9"
+      tag : "3.7.4"
     steps:
       - setup_lib
       - store_test_results:
@@ -33,7 +33,9 @@ jobs:
       - store_test_results:
           path: test-reports
   test_2:
-    executor: python/default
+    executor: 
+      name : python/default
+      tag : "3.7.4"
     steps:
       - setup_lib
       - run:
@@ -43,7 +45,9 @@ jobs:
       - store_test_results:
           path: test-reports
   test_all:
-    executor: python/default
+    executor: 
+      name : python/default
+      tag : "3.7.4"
     steps:
       - setup_lib
       - run:
@@ -53,7 +57,9 @@ jobs:
       - store_test_results:
           path: test-reports
   test_covarege:
-    executor: python/default
+    executor: 
+      name : python/default
+      tag : "3.7.4"
     steps:
       - setup_lib
       - run:
