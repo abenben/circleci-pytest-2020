@@ -9,7 +9,7 @@ def func_ids(params):
         format(params[0], params[1], params[2])
 
 
-subtraction_lists = ()
+subtraction_lists = (
     [0, 0, 0],
     [1, 1, 0],
     [10, 5, 5])
