@@ -21,7 +21,6 @@ def subtraction_task(request):
 
 
 def test_subtraction_normal(subtraction_task):
-    return
     cal = calculator.Calculator()
     result = cal.subtraction(subtraction_task[0], subtraction_task[1])
     assert result == subtraction_task[2]
