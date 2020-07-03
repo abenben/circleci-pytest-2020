@@ -17,7 +17,7 @@ jobs:
   lint:
     executor: 
       name : python/default
-      tag : "3.6.4"
+      tag : "3.6.9"
     steps:
       - setup_lib
       - store_test_results:
