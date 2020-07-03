@@ -51,7 +51,9 @@ jobs:
           command: |
             pytest --cov=src --cov-report=html --cov-fail-under=100
       - store_test_results:
-          path: test-reports
+          path: htmlcov
+      - store_artifacts:
+          path: htmlcov
 workflows:
   test_calculator1:
     jobs:
