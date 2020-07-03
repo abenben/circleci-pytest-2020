@@ -29,7 +29,7 @@ jobs:
           command: |
             pytest tests/test_calculator_addition.py tests/test_calculator_subtraction.py --junitxml=test-reports/junit.xml
       - store_test_results:
-          path: test-reports/junit.xml
+          path: test-reports
   test_2:
     executor: python/default
     steps:
@@ -39,7 +39,7 @@ jobs:
           command: |
             pytest tests/test_calculator_multiplication.py tests/test_calculator_division.py --junitxml=test-reports/junit.xml
       - store_test_results:
-          path: test-reports/junit.xml
+          path: test-reports
   test_covarege:
     executor: python/default
     steps:
