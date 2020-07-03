@@ -12,8 +12,7 @@ def func_ids(params):
 division_lists = (
     [0, 1, 0],
     [1, 1, 1],
-    [10, 5, 2],
-    [2,0,0])
+    [10, 5, 2])
 
 
 @pytest.fixture(params=division_lists, ids=func_ids)
