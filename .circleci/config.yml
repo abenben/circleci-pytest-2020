@@ -16,7 +16,7 @@ commands:
 jobs:
   lint:
     executor: 
-      name : python/python
+      name : python/default
       tag : "3.6.4"
     steps:
       - setup_lib
