@@ -10,10 +10,9 @@ def func_ids(params):
 
 
 subtraction_lists = ()
-#subtraction_lists = (
-#    [0, 0, 0],
-#    [1, 1, 0],
-#    [10, 5, 5])
+    [0, 0, 0],
+    [1, 1, 0],
+    [10, 5, 5])
 
 
 @pytest.fixture(params=subtraction_lists, ids=func_ids)
