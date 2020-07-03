@@ -40,6 +40,16 @@ jobs:
             pytest tests/test_calculator_multiplication.py tests/test_calculator_division.py --junitxml=test-reports/junit.xml
       - store_test_results:
           path: test-reports
+  test_all:
+    executor: python/default
+    steps:
+      - setup_lib
+      - run:
+          name: run test
+          command: |
+            pytest tests/ --junitxml=test-reports/junit.xml
+      - store_test_results:
+          path: test-reports
   test_covarege:
     executor: python/default
     steps:
@@ -73,3 +83,12 @@ workflows:
       - test_covarege:
           requires:
             - test_1
+test_calculator3:
+    jobs:
+      - lint
+      - test_all:
+          requires:
+            - lint
+      - test_covarege:
+          requires:
+            - test_all
