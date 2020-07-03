@@ -15,7 +15,9 @@ commands:
       - python/save-cache
 jobs:
   lint:
-    executor: python/3.6.4
+    executor: 
+      name : python/python
+      tag : "3.6.4"
     steps:
       - setup_lib
       - store_test_results:
