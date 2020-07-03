@@ -30,7 +30,7 @@ jobs:
             pytest tests/test_calculator_addition.py --junitxml=test-reports/junit.xml
             pytest tests/test_calculator_subtraction.py	--junitxml=test-reports/junit.xml
       - store_test_results:
-          path: test-reports
+          path: test-reports/junit.xml
   test_2:
     executor: python/default
     steps:
@@ -41,7 +41,7 @@ jobs:
             pytest tests/test_calculator_multiplication.py --junitxml=test-reports/junit.xml
             pytest tests/test_calculator_division.py --junitxml=test-reports/junit.xml
       - store_test_results:
-          path: test-reports
+          path: test-reports/junit.xml
   test_covarege:
     executor: python/default
     steps:
@@ -50,8 +50,6 @@ jobs:
           name: run test covarege
           command: |
             pytest --cov=src --cov-report=html --cov-fail-under=100
-      - store_test_results:
-          path: htmlcov
       - store_artifacts:
           path: htmlcov
 workflows:
