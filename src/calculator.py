@@ -36,7 +36,7 @@ class Calculator(object):
         :param y: 右辺
         :return: 計算結果
         """
-        result = x + y
+        result = x * y
         return result
 
     @staticmethod
