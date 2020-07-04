@@ -74,6 +74,6 @@ workflows:
           requires:
             - test_add_subtract
             - test_multi_devison
-      - deplo:
+      - deploy:
           requires:
             - test_covarege
