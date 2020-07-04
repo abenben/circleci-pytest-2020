@@ -22,7 +22,7 @@ jobs:
       - setup_lib
       - store_test_results:
           path: test-reports
-  test_1:
+  test_add_subtract:
     executor: python/default
     steps:
       - setup_lib
@@ -32,7 +32,7 @@ jobs:
             pytest tests/test_calculator_addition.py tests/test_calculator_subtraction.py --junitxml=test-reports/junit.xml
       - store_test_results:
           path: test-reports
-  test_2:
+  test_multi_devison:
     executor: 
       name : python/default
       tag : "3.7.4"
@@ -42,18 +42,6 @@ jobs:
           name: run test
           command: |
             pytest tests/test_calculator_multiplication.py tests/test_calculator_division.py --junitxml=test-reports/junit.xml
-      - store_test_results:
-          path: test-reports
-  test_all:
-    executor: 
-      name : python/default
-      tag : "3.7.4"
-    steps:
-      - setup_lib
-      - run:
-          name: run test
-          command: |
-            pytest tests/ --junitxml=test-reports/junit.xml
       - store_test_results:
           path: test-reports
   test_covarege:
@@ -69,34 +57,16 @@ jobs:
       - store_artifacts:
           path: htmlcov
 workflows:
-  test_calculator1:
+  test_calculator:
     jobs:
       - lint
-      - test_all:
+      - test_add_subtract:
+          requires:
+            - lint
+      - test_multi_devison:
           requires:
             - lint
       - test_covarege:
           requires:
-            - test_all
-  test_calculator2:
-    jobs:
-      - lint
-      - test_1:
-          requires:
-            - lint
-      - test_2:
-          requires:
-            - lint
-      - test_covarege:
-          requires:
-            - test_1
-            - test_2
-  test_calculator3:
-    jobs:
-      - lint
-      - test_1:
-          requires:
-            - lint
-      - test_covarege:
-          requires:
-            - test_1
+            - test_add_subtract
+            - test_multi_devison
