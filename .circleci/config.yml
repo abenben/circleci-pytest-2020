@@ -43,7 +43,7 @@ jobs:
             pytest tests/test_calculator_multiplication.py tests/test_calculator_division.py --junitxml=test-reports/junit.xml
       - store_test_results:
           path: test-reports
-  test_covarege: # カバレッジ（ソースコードのテスト網羅率）のチェック
+  test_covarege:
     executor: 
       name : python/default
       tag : "3.7.4"
@@ -57,6 +57,18 @@ jobs:
           path: htmlcov
   deploy:
     executor: 
+      name : python/default
+      tag : "3.7.4"
+    steps:
+      - setup_lib
+  sphinx_making:
+    executor:
+      name : python/default
+      tag : "3.7.4"
+    steps:
+      - setup_lib
+  deploy_document_server:
+    executor:
       name : python/default
       tag : "3.7.4"
     steps:
