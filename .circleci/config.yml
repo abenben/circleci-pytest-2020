@@ -69,6 +69,15 @@ jobs:
       - store_artifacts:
           path: htmlcov
 workflows:
+  test_calculator4:
+    jobs:
+      - lint
+      - test_1:
+          requires:
+            - lint
+      - test_covarege:
+          requires:
+            - test_1
   test_calculator1:
     jobs:
       - lint
